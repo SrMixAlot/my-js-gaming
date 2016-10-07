@@ -12,7 +12,8 @@ class Player extends GameObject {
     /*
      * updates position of player and redraws it onto the canvas
      */
-    update(context) {
+    update(context, keys) {
+        _takeInput(keys);
         _newPos();
         super.draw(context);
     }
@@ -78,7 +79,7 @@ class Player extends GameObject {
     /*
      * Given an array of key codes, take the appropriate action
      */
-    takeInput(keys) {
+    _takeInput(keys) {
         if(keys)
             if(keys[37])
                 moveleft();

@@ -7,6 +7,7 @@ class GameArea {
         this.canvas.width = width;
         this.canvas.height = height;
         this.context = this.canvas.getContext("2d");
+        this.gameobjs = [];
     }
 
     /*
@@ -21,7 +22,7 @@ class GameArea {
         this.frameNo = 0;
         this.interval = setInterval(this.update, 20);
         window.addEventListener('keydown', function(e) {
-			this.keys = (gameArea.keys || []);
+			this.keys = (this.keys || []);
 			this.keys[e.keyCode] = true;
 		})
 		window.addEventListener('keyup', function (e) {
@@ -46,6 +47,12 @@ class GameArea {
     update() {
         this.clear;
         this.frameNo++;
+
+        // each game object in the game area
+        // updates itself
+        if(this.gameobjs)
+            for(var i=0; i<this.gameobjs.length; i++)
+                gameobjs[i].update(this.context, this.keys);
     }
 
     /*
@@ -53,5 +60,13 @@ class GameArea {
      */
     clear() {
         this.context.clearRect(0,0,this.canvas.width, this.canvas.height);
+    }
+
+    /*
+     * Add a game object to this GameArea
+     */
+    addObj(obj) {
+        // should do some type checking here
+        this.gameobjs.push(obj);
     }
 }

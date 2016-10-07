@@ -1,5 +1,6 @@
 var gameArea;
-var gameP;
+var player;
+var objs = [];
 
 /*
  * Initializes game objects
@@ -10,5 +11,6 @@ function startGame() {
 
 	player.draw(gameArea.context);
 
+	gameArea.addObj(player);
 	gameArea.start();
 }
