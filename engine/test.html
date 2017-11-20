@@ -2,11 +2,52 @@
 <html>
   <head>
     <link rel="stylesheet" href="main.css">
-    <script src="GameArea.js"></script>
-    <script src="GameObject.js"></script>
-    <script src="Player.js"></script>
-    <script src="main.js"></script>
+    <script>
+        class Keyboard {
+
+            constructor() {
+                this.keys = [];
+
+                // window.addEventListener('keydown', function(e) {
+                //     this.keys = (this.keys || []);
+                //     this.keys[e.keyCode] = true;
+                // });
+
+                // window.addEventListener('keyup', function(e) {
+                //     this.keys[e.keyCode] = false;
+                // });
+
+                window.addEventListener('keydown', e => {
+                    this.keys = (this.keys || []);
+                    this.keys[e.keyCode] = true;
+                });
+
+                window.addEventListener('keyup', e => {
+                    this.keys[e.keyCode] = false;
+                });
+            }
+
+            get keys() {
+                return this._keys;
+            }
+
+            set keys(k) {
+                this._keys = k;
+            }
+        }
+
+        var keyboard = new Keyboard();
+
+        console.log(keyboard.keys);
+        
+        function update() {
+             if(keyboard.keys.length > 0)
+                 console.log(keyboard.keys);
+        }
+
+        var interval = setInterval(update, 1000);
+    </script>
   </head>
-  <body onload="startGame()">
+  <body>
   </body>
 </html>
