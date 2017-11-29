@@ -13,8 +13,11 @@ class GameObject {
     /*
      * Draws this game object onto the canvas
      */
-    draw(context) {
-        context.fillStyle = "red";
+    draw(context, color) {
+        if(!color)
+            color = "red";
+
+        context.fillStyle = color;
         context.fillRect(this.x, this.y, this.width, this.height);
     }
 }

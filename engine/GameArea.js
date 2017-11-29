@@ -52,8 +52,21 @@ class GameArea {
 
         // each game object in the game area
         // updates itself
-        for (var i = 0; i < this.gameobjs.length; i++)
-            this.gameobjs[i].update(this.context, this.keys);
+        for (var i = 0; i < this.gameobjs.length; i++) {
+            if(this.gameobjs[i] instanceof Player) {
+                this.gameobjs[i].update(this.context, this.keys);
+            }
+            if(this.gameobjs[i] instanceof Enemy) {
+                console.log("Updating enemy");
+
+                // get random keys input
+                var enemyKeys = [];
+                var num = Math.floor(Math.random() * (4 - 0)) + 0;
+                enemyKeys[37 + num] = true;
+                
+                this.gameobjs[i].update(this.context, enemyKeys);
+            }
+        } 
     }
 
     /*

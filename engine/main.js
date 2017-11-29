@@ -1,5 +1,6 @@
 var gameArea;
 var player;
+var enemy;
 var objs = [];
 
 /*
@@ -8,9 +9,10 @@ var objs = [];
 function startGame() {
 	gameArea = new GameArea(270,480);
 	player = new Player(30,30, 10, 120);
-
-	player.draw(gameArea.context);
+	enemy = new Enemy(30,30, 50, 120);
 
 	gameArea.addObj(player);
+	gameArea.addObj(enemy);
+	
 	gameArea.start();
 }

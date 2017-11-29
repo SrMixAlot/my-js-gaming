@@ -1,4 +1,4 @@
-class Player extends GameObject {
+class Enemy extends GameObject {
 
     /*
      * Player constructor, initializes player speed and game object
@@ -15,7 +15,8 @@ class Player extends GameObject {
     update(context, keys) {
         this._takeInput(keys);
         this._newPos();
-        super.draw(context);
+        console.log(context);
+        super.draw(context, "green");
         this.speedX = 0;
         this.speedY = 0;
     }
@@ -84,6 +85,7 @@ class Player extends GameObject {
      * Given an array of key codes, take the appropriate action
      */
     _takeInput(keys) {
+        //console.log(this);
 
         if (keys) {
             if (keys[37])
