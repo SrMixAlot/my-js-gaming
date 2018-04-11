@@ -15,8 +15,9 @@ class Enemy extends GameObject {
     update(context, keys) {
         this._takeInput(keys);
         this._newPos();
-        console.log(context);
         super.draw(context, "green");
+
+        // move clearing speed function in gameobject
         this.speedX = 0;
         this.speedY = 0;
     }
@@ -47,8 +48,6 @@ class Enemy extends GameObject {
      * Moves the player left horizontally
      */
     moveleft(speed) {
-        console.log("moving left");
-        console.log(this);
         this.speedX = -1 * speed;
     }
 
@@ -85,8 +84,6 @@ class Enemy extends GameObject {
      * Given an array of key codes, take the appropriate action
      */
     _takeInput(keys) {
-        //console.log(this);
-
         if (keys) {
             if (keys[37])
                 this.moveleft(1);

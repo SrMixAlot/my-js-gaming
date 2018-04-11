@@ -1,3 +1,6 @@
+/*
+* Player controlled character
+*/
 class Player extends GameObject {
 
     /*
@@ -5,19 +8,32 @@ class Player extends GameObject {
      */
     constructor(height, width, x, y) {
         super(height, width, x, y);
+
         this.speedX = 0;
         this.speedY = 0;
     }
 
     /*
-     * updates position of player and redraws it onto the canvas
+     * Updates position of player and redraws it onto the canvas
      */
     update(context, keys) {
+        this._fall();
         this._takeInput(keys);
         this._newPos();
+
         super.draw(context);
+        
         this.speedX = 0;
         this.speedY = 0;
+    }
+
+    /*
+     * Adds gravity to player
+     */
+    _fall() {
+        if(this.y < 240) {
+            this.movedown(1);
+        }
     }
 
     /*
@@ -40,14 +56,13 @@ class Player extends GameObject {
      */
     movedown(speed) {
         this.speedY = speed;
+        console.log(this.y);
     }
 
     /*
      * Moves the player left horizontally
      */
     moveleft(speed) {
-        console.log("moving left");
-        console.log(this);
         this.speedX = -1 * speed;
     }
 
@@ -70,14 +85,15 @@ class Player extends GameObject {
         var objright = obj.x + (obj.width);
         var objtop = obj.y;
         var objbottom = obj.y + (obj.height);
-        var crash = true;
+        
         if ((bottom < objtop) ||
             (top > objbottom) ||
             (right < objleft) ||
             (left > objright)) {
-            crash = false;
+            return false;
         }
-        return crash;
+
+        return true;
     }
 
     /*

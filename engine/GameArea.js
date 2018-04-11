@@ -57,8 +57,6 @@ class GameArea {
                 this.gameobjs[i].update(this.context, this.keys);
             }
             if(this.gameobjs[i] instanceof Enemy) {
-                console.log("Updating enemy");
-
                 // get random keys input
                 var enemyKeys = [];
                 var num = Math.floor(Math.random() * (4 - 0)) + 0;
